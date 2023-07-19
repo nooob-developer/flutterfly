@@ -4,6 +4,10 @@ flutter installer for noob user :)
 ```
 wget https://raw.githubusercontent.com/nooob-developer/noob-flutter-installer/main/noob-flutter-installer.sh
 ```
+or
+```
+git clone https://github.com/nooob-developer/noob-flutter-installer 
+```
 ## how to use
 ```
 chmod +x noob-flutter-installer.sh
