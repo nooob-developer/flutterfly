@@ -5,19 +5,23 @@ read -p "Do you want to update system? (Y/N) " update_ans
 if [ -z "$update_ans" ]; then
   update_ans="Y" 
 fi
-
-kernel=$(uname -r)
-
+package_manager=""
 if [[ "$update_ans" == "Y" || "$update_ans" == "y" ]]; then
+    if [ -x "$(command -v pacman)" ]; then
+    package_manager="pacman"
+  echo "Using $package_manager"
 
-  if [[ "$kernel" == *"arch"* ]]; then
-    echo "Arch-based" 
-    sudo pacman -Syu
-  fi
-
+else 
+ echo "Not using pacman"
+  package_manager="other"
 fi
 
-if [[ "$kernel" == *"arch"* ]]; then
+  fi 
+    sudo pacman -Syu
+  
+
+
+if [[ "$package_manager" == *"pacman"* ]]; then
 
   echo "Installing packages on Arch:"
 
@@ -76,3 +80,4 @@ fi
 if [[ "$see_file" == "y" || "$see_file" == "Y" ]]; then
 cd /opt/flutter/
 fi
+
