@@ -6,7 +6,7 @@ wget https://raw.githubusercontent.com/nooob-developer/noob-flutter-installer/ma
 ```
 or
 ```
-git clone https://github.com/nooob-developer/noob-flutter-installer 
+git clone https://github.com/nooob-developer/noob-flutter-installer && cd noob-flutter-installer 
 ```
 ## how to use
 ```
