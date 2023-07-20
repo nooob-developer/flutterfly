@@ -9,38 +9,38 @@ package_manager=""
 if [[ "$update_ans" == "Y" || "$update_ans" == "y" ]]; then
     if [ -x "$(command -v pacman)" ]; then
     package_manager="pacman"
+    sudo pacman -Syu
   echo "Using $package_manager"
 
 else 
  echo "Not using pacman"
+
   package_manager="other"
 fi
 
-  fi 
-    sudo pacman -Syu
-  
+  fi
+read -p "AUR helper (yay/paru/trizen): " read_input
 
 
+    
+install_flutter() {
+   case "$read_input" in
+    "yay")
+      yay -S flutter
+      ;;
+    "paru")
+      paru -S flutter   
+      ;;
+    "trizen")
+      trizen -S flutter
+      ;;
+  esac
+
+}
 if [[ "$package_manager" == *"pacman"* ]]; then
 
   echo "Installing packages on Arch:"
-
-  if [[ -x "$(command -v yay)" ]]; then
-    yay -S flutter
-  elif [[ -x "$(command -v paru)" ]]; then
-    paru -S flutter
-  elif [[ -x "$(command -v trizen)" ]]; then
-      trizen -S flutter
-fi
-fi
-
-if yay -S flutter; then
-  
-  echo "Flutter download successfully"
-  
-else
-  echo "Error download flutter"
-fi
+ fi
 
 if [ -d "/opt/flutter" ]; then
 
@@ -80,4 +80,3 @@ fi
 if [[ "$see_file" == "y" || "$see_file" == "Y" ]]; then
 cd /opt/flutter/
 fi
-
