@@ -69,7 +69,7 @@ else
 
 fi
 fi
-source .bashrc
+source ~/.bashrc
 flutter doctor
 
 read -p "Do you want to see SDK file? (y/n)" see_file
