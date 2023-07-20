@@ -19,28 +19,29 @@ else
 fi
 
   fi
-read -p "AUR helper (yay/paru/trizen): " read_input
-
-
-    
+  
 install_flutter() {
-   case "$read_input" in
-    "yay")
-      yay -S flutter
-      ;;
-    "paru")
-      paru -S flutter   
-      ;;
-    "trizen")
-      trizen -S flutter
-      ;;
-  esac
+   echo "Which AUR helper do you use? (yay/paru/etc):"
 
+read helper
+
+if [[ $helper =~ ^[a-zA-Z0-9]+$ ]]; then
+
+helper=$(echo "$helper" | trim)
+
+if ! command -v flutter &> /dev/null; then
+
+"$helper" -S flutter
+
+fi
+else
+echo "Invalid input. Only alphanumeric characters allowed."
+fi
 }
 if [[ "$package_manager" == *"pacman"* ]]; then
 
   echo "Installing packages on Arch:"
- fi
+fi
 
 if [ -d "/opt/flutter" ]; then
 
@@ -59,7 +60,9 @@ if [ -d "/opt/flutter" ]; then
   export PATH="$PATH:$ANDROID_SDK_ROOT/tools"
   export PATH="$PATH:$ANDROID_SDK_ROOT/tools/bin"
   export PATH="$PATH:$ANDROID_SDK_ROOT/platform-tools"
+
   echo "Add JAVA PATH"
+
   export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
   export PATH=$PATH:$JAVA_HOME/bin
 
