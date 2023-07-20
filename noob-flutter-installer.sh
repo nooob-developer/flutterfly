@@ -9,7 +9,7 @@ package_manager=""
 if [[ "$update_ans" == "Y" || "$update_ans" == "y" ]]; then
     if [ -x "$(command -v pacman)" ]; then
     package_manager="pacman"
-    sudo pacman -Syu
+    pkexec pacman -Syu
   echo "Using $package_manager"
 
 else 
@@ -69,7 +69,7 @@ else
 
 fi
 fi
-
+source .bashrc
 flutter doctor
 
 read -p "Do you want to see SDK file? (y/n)" see_file
