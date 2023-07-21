@@ -49,13 +49,7 @@ Flutter_list="
   export PATH="$PATH:$ANDROID_SDK_ROOT/platform-tools"
 "
 
-if [[ "$package_manager" == *"pacman"* ]]; then
-
-	echo "Installing packages on Arch:"
-fi
-
 if [ -d "/opt/flutter" ]; then
-
 	echo "Flutter installed successfully"
 fi
 read -p "Do you want to install OpenJDK? (y/n)" choice
