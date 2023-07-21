@@ -51,8 +51,23 @@ if [ -d "/opt/flutter" ]; then
   if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
       
       sudo pacman -S jdk-openjdk
+      
+  echo "Add JAVA PATH"
 
-  echo "Add PATH to shell"
+  export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+  export PATH=$PATH:$JAVA_HOME/bin
+
+
+else
+
+  echo "Error installing Open-Jdk"
+
+fi
+fi
+  read -p "Do you want add flutter PATH? (y/n)" flutter_PATH
+  if [[ "$flutter_PATH" == "y" || "$flutter_PATH" == "Y" ]]; then
+
+    echo "Add PATH to shell"
 
   export PATH="$PATH:/opt/flutter/bin"
   export ANDROID_SDK_ROOT=/opt/android-sdk
@@ -60,18 +75,9 @@ if [ -d "/opt/flutter" ]; then
   export PATH="$PATH:$ANDROID_SDK_ROOT/tools"
   export PATH="$PATH:$ANDROID_SDK_ROOT/tools/bin"
   export PATH="$PATH:$ANDROID_SDK_ROOT/platform-tools"
-
-  echo "Add JAVA PATH"
-
-  export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-  export PATH=$PATH:$JAVA_HOME/bin
-
-else
-
-  echo "Error installing Flutter"
-
-fi
-fi
+ else
+ echo "Failed to add flutter PATH"
+ fi
 source ~/.bashrc
 flutter doctor
 
