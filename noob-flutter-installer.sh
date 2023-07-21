@@ -2,24 +2,25 @@
 read -p "Which shell do you use? (bash/zsh/etc)" user_shell
 read -p "Do you want to update system? (y/n) " update_ans
 
+if [ -x "$(command -v pacman)" ]; then
+	package_manager="pacman"
+
+	echo "Using $package_manager"
+
+else
+	echo "Not using pacman"
+
+	package_manager="other"
+fi
+
 if [ -z "$update_ans" ]; then
 	update_ans="Y"
 fi
 package_manager=""
 if [[ "$update_ans" == "Y" || "$update_ans" == "y" ]]; then
-	if [ -x "$(command -v pacman)" ]; then
-		package_manager="pacman"
-		pkexec pacman -Syu
-		echo "Using $package_manager"
-
-	else
-		echo "Not using pacman"
-
-		package_manager="other"
-	fi
-
+	pkexec pacman -Syu
 fi
-
+echo "installing flutter"
 install_flutter() {
 	echo "Which AUR helper do you use? (yay/paru/etc):"
 
