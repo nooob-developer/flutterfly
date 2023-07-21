@@ -7,11 +7,6 @@ if [ -x "$(command -v pacman)" ]; then
 
 	echo "Using $package_manager"
 
-else
-	echo "Not using pacman"
-
-	package_manager="other"
-fi
 
 if [ -z "$update_ans" ]; then
 	update_ans="Y"
@@ -109,3 +104,9 @@ fi
 if [[ "$see_file" == "y" || "$see_file" == "Y" ]]; then
 	cd /opt/flutter/
 fi
+else
+	echo "Not using pacman"
+
+	package_manager="other"
+fi
+
