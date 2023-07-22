@@ -81,7 +81,7 @@ export PATH=$PATH:$JAVA_HOME/bin
   export PATH="$PATH:$ANDROID_SDK_ROOT/tools/bin"
   export PATH="$PATH:$ANDROID_SDK_ROOT/platform-tools"
 #=======================================================
-  "
+"
 	if [ -d "/opt/flutter" ]; then
 		echo "Flutter installed successfully"
 	fi
@@ -92,9 +92,9 @@ export PATH=$PATH:$JAVA_HOME/bin
 		sudo pacman -S jdk-openjdk
 		if [ "$user_shell" == "bash" ]; then
 			echo "Add JAVA PATH"
-			echo "$JAVA_PATH" >> ~./bashrc
+			echo "$JAVA_PATH" >> $HOME/.bashrc
 		elif [ "$user_shell" == "zsh" ]; then
-			echo "JAVA_PATH" >> ~./zshrc
+			echo "JAVA_PATH" >> $HOME/.zshrc
 		else
 
 			echo "Error installing Open-Jdk"
@@ -107,9 +107,9 @@ export PATH=$PATH:$JAVA_HOME/bin
 		if [ "$user_shell" == "bash" ]; then
 			echo "Add flutter PATH to shell"
 
-			echo "$Flutter_list" >> ~./bashrc
+			echo "$Flutter_list" >> $HOME/.bashrc
 		elif [ "$user_shell" == "zsh" ]; then
-			echo "$Flutter_list" >> ~./zshrc
+			echo "$Flutter_list" >> $HOME/.zshrc
 
 		else
 			echo "Failed to add flutter PATH"
@@ -117,9 +117,9 @@ export PATH=$PATH:$JAVA_HOME/bin
 	fi
 
 	if [ "$user_shell" == "bash" ]; then
-		source ~/.bashrc
+		source $HOME/.bashrc
 	elif [ "$user_shell" == "zsh" ]; then
-		source ~/.zshrc
+		source $HOME/.zshrc
 	fi
 	flutter doctor
 
