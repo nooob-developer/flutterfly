@@ -2,51 +2,86 @@
 read -p "Which shell do you use? (bash/zsh/etc)" user_shell
 read -p "Do you want to update system? (y/n) " update_ans
 
+aur_source="" 
 if [ -x "$(command -v pacman)" ]; then
-	package_manager="pacman"
 
-	echo "Using $package_manager"
+    package_manager="pacman"
+
+ 
+
+  read -p "Do you already have Chaotic-AUR installed? (y/n)" has_chaotic
+
+  if [[ "$has_chaotic" == "n" ]]; then
+      echo "installing chaotic-aur"
+   	pkexec pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+		sudo pacman-key --lsign-key 3056513887B78AEB
+		sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+        sudo echo "
+        [chaotic-aur]
+        Include = /etc/pacman.d/chaotic-mirrorlist >> /etc/pacman.conf" 
+    else 
+    echo "Skip install"
+  fi 
+
+
+
+  echo "Using $package_manager"
 
 	if [ -z "$update_ans" ]; then
 		update_ans="Y"
 	fi
-	package_manager=""
+	
 	if [[ "$update_ans" == "Y" || "$update_ans" == "y" ]]; then
 		pkexec pacman -Syu
 	fi
 	echo "installing flutter"
 	install_flutter() {
-		read -p "Which AUR helper do you use? (yay/paru/etc):" helper
+		if [[ "$has_chaotic" == "y" || "$has_chaotic" == "Y" ]]; then
 
-		if [[ $helper =~ ^[a-zA-Z0-9]+$ ]]; then
+    PS3="Please select to install Flutter from AUR or Chaotic-AUR: "
+    select aur_chaotic in Chaotic-AUR AUR; do
+      aur_source="$aur_chaotic"
+      break  
+    done
+       if [[ "$aur_chaotic" == "AUR" ]]; then
 
-			# helper=$(echo "$helper" | trim)
-            helper=$(echo "$helper" | sed 's/ *$//')
-			if ! command -v flutter &>/dev/null; then
+	   read -p "Which AUR helper do you use? (yay/paru/etc):" helper
+	helper=$(echo "$helper" | sed 's/ *$//')
 
-				"$helper" -S flutter
+          $helper -S flutter
+ 
+       fi
 
-			fi
-		else
-			echo "Invalid input. Only alphanumeric characters allowed."
-		fi
-	}
-	install_flutter
+                if [[ "$aur_chaotic" == "Chaotic-AUR" ]]; then
+              pkexec pacman -S flutter
+          else
+ 	 echo "Invalid input. Only alphanumeric characters allowed."
+ 
 
-	JAVA_PATH=" 
+  fi 
+
+fi
+
+ }
+install_flutter
+
+	JAVA_PATH="
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^    
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export PATH=$PATH:$JAVA_HOME/bin
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 "
 
 	Flutter_list="
- export PATH="$PATH:/opt/flutter/bin"
+ #======================================================   
+  export PATH="$PATH:/opt/flutter/bin"
   export ANDROID_SDK_ROOT=/opt/android-sdk
   export PATH="$PATH:$ANDROID_SDK_ROOT/emulator"
   export PATH="$PATH:$ANDROID_SDK_ROOT/tools"
   export PATH="$PATH:$ANDROID_SDK_ROOT/tools/bin"
   export PATH="$PATH:$ANDROID_SDK_ROOT/platform-tools"
-"
-
+#=======================================================
+  "
 	if [ -d "/opt/flutter" ]; then
 		echo "Flutter installed successfully"
 	fi
@@ -57,9 +92,9 @@ export PATH=$PATH:$JAVA_HOME/bin
 		sudo pacman -S jdk-openjdk
 		if [ "$user_shell" == "bash" ]; then
 			echo "Add JAVA PATH"
-			echo "$JAVA_PATH" >>~./bashrc
+			echo "$JAVA_PATH" >> ~./bashrc
 		elif [ "$user_shell" == "zsh" ]; then
-			echo "Flutter_list" >>~./zshrc
+			echo "JAVA_PATH" >> ~./zshrc
 		else
 
 			echo "Error installing Open-Jdk"
@@ -72,9 +107,9 @@ export PATH=$PATH:$JAVA_HOME/bin
 		if [ "$user_shell" == "bash" ]; then
 			echo "Add flutter PATH to shell"
 
-			echo "$Flutter_list" >>~./bashrc
+			echo "$Flutter_list" >> ~./bashrc
 		elif [ "$user_shell" == "zsh" ]; then
-			echo "$Flutter_list" >>~./zshrc
+			echo "$Flutter_list" >> ~./zshrc
 
 		else
 			echo "Failed to add flutter PATH"
