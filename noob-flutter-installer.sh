@@ -128,9 +128,10 @@ export PATH=$PATH:$JAVA_HOME/bin
 	if [ -z "$see_file" ]; then
 		see_file="Y"
 	fi
-	if [[ "$see_file" == "y" || "$see_file" == "Y" ]]; then
-		cd /opt/flutter/
-	fi
+    if [[ "$see_file" == "y" || "$see_file" == "Y" ]]; then
+        cd /opt/flutter/
+    fi
+ $SHELL
 else
 	echo "Not using pacman"
 
