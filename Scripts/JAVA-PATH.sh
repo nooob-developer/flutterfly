@@ -25,11 +25,9 @@ export PATH=$PATH:$JAVA_HOME/bin
 			echo "Add JAVA PATH"
 			echo "$JAVA_PATH" >> $HOME/.bashrc
 		elif [ "$user_shell" == "zsh" ]; then
-			echo "JAVA_PATH" >> $HOME/.zshrc
+			echo "$JAVA_PATH" >> $HOME/.zshrc
 		else
-
 			echo "Error installing Open-Jdk"
-
 		fi
         break 
 
