@@ -16,15 +16,19 @@ if [ -x "$(command -v pacman)" ]; then
    	pkexec pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
 		sudo pacman-key --lsign-key 3056513887B78AEB
 		sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
-        sudo echo "
+        pkexec echo '
         [chaotic-aur]
-        Include = /etc/pacman.d/chaotic-mirrorlist >> /etc/pacman.conf" 
+        Include = /etc/pacman.d/chaotic-mirrorlist " >> /etc/pacman.conf' | tee -a /etc/pacman.conf
+	
     else 
     echo "Skip install"
   fi 
 
+  if [ $? -eq 0 ]; then
+     echo -e "success" chaotic_check  
+      pkexec pacman -S flutter
 
-
+  fi
   echo "Using $package_manager"
 
 	if [ -z "$update_ans" ]; then
@@ -43,6 +47,10 @@ if [ -x "$(command -v pacman)" ]; then
       aur_source="$aur_chaotic"
       break  
     done
+
+
+
+
        if [[ "$aur_chaotic" == "AUR" ]]; then
 
 	   read -p "Which AUR helper do you use? (yay/paru/etc):" helper

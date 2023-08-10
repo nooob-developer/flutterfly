@@ -34,9 +34,6 @@ fi
         echo "Enter path to save file:"
         read save_path
 
-        echo "Enter name file"
-        read name_sdk
-
         wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.10.6-stable.tar.xz
         tar -xf flutter_linux_3.10.6-stable.tar.xz -C $save_path
    fi

@@ -1,15 +1,18 @@
 #!/bin/bash
 
-PS3="ٰDid you use the download method from the site ?"
+  PS3="ٰDid you use the download method from the site ? or repo ? " \
 
-select method_flutter in yes no; do
- if [[ "$method_flutter" == "yes" ]]; then   
+select method_flutter in site aur...; do
+  
+
+ if [[ "$method_flutter" == "site" ]]; then   
    read -p "please insert location file" loc_sdk
  fi
 break 
  done
 flutter_PATH_site="
 #&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+# added by noob-flutter-script
 export PATH="$PATH:/$loc_sdk"
 #&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 "
@@ -21,7 +24,7 @@ export PATH="$PATH:/$loc_sdk"
 "
 PS3="Please select shell to add flutter-PATH: "
 
-    if [[ "$method_flutter" == "yes" ]]; then
+    if [[ "$method_flutter" == "site" ]]; then
         echo "add 'export' for site method"
       	if [ "$user_shell" == "bash" ]; then
             echo "$flutter_PATH_site" >> $HOME/.bashrc
@@ -34,6 +37,7 @@ PS3="Please select shell to add flutter-PATH: "
 		fi
     fi
     select user_shell in bash zsh; do
+      if [[ "$method_flutter" == "aur..." ]]; then
       	if [ "$user_shell" == "bash" ]; then
             echo "$flutter_PATH" >> $HOME/.bashrc
 		elif [ "$user_shell" == "zsh" ]; then
@@ -44,7 +48,7 @@ PS3="Please select shell to add flutter-PATH: "
 
 		fi
         break 
-
+fi
     done
 
 
@@ -53,7 +57,7 @@ PS3="Please select shell to add flutter-PATH: "
 	elif [ "$user_shell" == "zsh" ]; then
 		source $HOME/.zshrc
 	fi
-
+ echo "cammand flutter doctor"
     flutter doctor
 
 flutter --version
