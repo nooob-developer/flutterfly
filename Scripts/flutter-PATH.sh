@@ -1,6 +1,6 @@
 #!/bin/bash
 
-  PS3="ٰDid you use the download method from the site ? or repo ? " \
+PS3="ٰ$(echo -e 'Did you use the download method from the site && repo select it \n \b')"
 
 select method_flutter in site aur...; do
   

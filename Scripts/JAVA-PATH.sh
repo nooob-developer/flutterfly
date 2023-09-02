@@ -11,8 +11,10 @@ export PATH=$PATH:$JAVA_HOME/bin
 	read -p "Do you want to install OpenJDK? (y/n)" choice
 
 	if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
- 
-		pkexec pacman -S jdk-openjdk
+        if [ -x "$(command -v pacman)" ]; then 
+	    	 pkexec pacman -S jdk-openjdk
+        fi
+
     elif [[ "$choice" == "n" || "$choice" == "N" ]]; then
         echo "ok skip install..."
     else
