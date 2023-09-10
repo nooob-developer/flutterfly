@@ -49,22 +49,22 @@ if [ -x "$(command -v pacman)" ]; then
   fi
    fi
    if [[ "$method" == "Chaotic-aur" ]]; then
-   
-      if pacman -Sl chaotic-aur | grep -q chaotic; then
-         pkexec pacman -S flutter
-      else
-         echo "Chaotic-aur not installed Please installed (y/n) :"
-         read -p "Do you want install and config Chaotic-aur ? " ans_install_chaotic
-      fi
 
+   grep -q 'chaotic' /etc/pacman.d/mirrorlist
+if [ $? -eq 0 ]; then
+      pkexec pacman -S flutter
+      echo "chaotic mirror found"
+  else 
+      echo "chaotic mirror NOT found"
+      read -p "Do you want install and config Chaotic-aur ? " ans_install_chaotic
+fi
       if [[ "$ans_install_chaotic" == "y" || "$ans_install_chaotic" == "Y" ]]; then
       
          source ~./Choatic-aur.sh
          chmod +x ~./Choatic-aur.sh
          ./Choatic-aur.sh
          
-         if [ $? -ne 0 ]; then
-            echo "Error sourcing Choatic-aur script. You may have an incomplete download."
+         if [ $? -ne 0 ]; then 
             exit 1
          fi
          
