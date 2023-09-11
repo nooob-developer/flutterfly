@@ -1,7 +1,21 @@
+# flutterfly
 # Flutter Installer
 
 This script simplifies the installation of Flutter on Mac and Linux systems. 
 This project is completely modular and if you don't want all the files, there is a general file that works without any dependence on other files.
+
+This project enables you to install the Flutter SDK, Android SDK, and dependencies required for building Linux apps, from various sources including language sites, GitHub repositories, official distribution repositories, and unofficial third-party repositories. Except Snap
+
+Key points:
+- Install Flutter SDK
+- Install Android SDK
+- Add PATH Android && Flutter && JDK > in Shell
+- Install dependencies for Linux app generation
+- Supports multiple sources:
+  - Official source 
+  - GitHub repos
+  - Official distro repositories
+  - Unofficial 3rd party repos
 
 # Installation
 
@@ -16,7 +30,8 @@ wget https://raw.githubusercontent.com/nooob-developer/noob-flutter-installer/ma
 ```
 
 # Important Notes
-> Ensure you have at `wget` `git` of `polkit` installed before running the script.
+**For Iranian users, it is necessary to connect to an IP outside of Iran. (VPN)**
+> Ensure you have at `wget` or `curl` `git` of `polkit` installed before running the script.
 > - Root access for installing packages 
 >  - Give the script permission to execute.
 
@@ -29,18 +44,18 @@ or
 
 v1.0
 
-    Initial release
+> Initial release
 
 v1.1
 
-    Added support for macOS
+ > Added support for macOS
 
 v2.0
 
-    Added version TUI (very soon)  
+ > Added version TUI (very soon)  
 v3.0
 
-    added version GTK (soon)
+ > Added version GTK (soon)
 
 License
 
