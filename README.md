@@ -18,7 +18,7 @@ Key points:
   - Unofficial 3rd party repos
 
 # Installation
-
+> To install and use the modular file, `cd` the `Scripts` folder and run the ```installer.sh``` file
 ```
 git clone https://github.com/nooob-developer/noob-flutter-installer.git
 ```
