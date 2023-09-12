@@ -55,7 +55,7 @@ v2.0
  > Added version TUI (very soon)  
 v3.0
 
- > Added version GTK (soon)
+ > Added version GUI (soon)
 
 License
 
