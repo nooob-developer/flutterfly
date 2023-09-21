@@ -19,7 +19,7 @@ Key points:
 
 # Installation
 > To install and use the modular file, `cd` the `Scripts` folder and run the ```installer.sh``` file
-```bash
+```zsh
 git clone https://github.com/nooob-developer/noob-flutter-installer.git
 ```
 or
@@ -38,7 +38,7 @@ wget https://raw.githubusercontent.com/nooob-developer/noob-flutter-installer/ma
 # Troubleshooting
 please open a GitHub issue 
 or
-***Send your problem to this id*** [@nooob_developer](t.me/Nooob_developer) for help.
+**Send your problem to this** id [@nooob_developer](https://t.me/Nooob_developer) for help.
 
 ## Releases
 
