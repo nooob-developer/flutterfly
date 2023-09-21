@@ -25,7 +25,7 @@ git clone https://github.com/nooob-developer/noob-flutter-installer.git
 or
 
 Download method for separate and complete file
-```bash
+```zsh
 wget https://raw.githubusercontent.com/nooob-developer/noob-flutter-installer/main/noob-flutter-full-installer.sh
 ```
 
