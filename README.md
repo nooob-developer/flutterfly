@@ -19,13 +19,13 @@ Key points:
 
 # Installation
 > To install and use the modular file, `cd` the `Scripts` folder and run the ```installer.sh``` file
-```zsh
+```fish
 git clone https://github.com/nooob-developer/noob-flutter-installer.git
 ```
 or
 
 Download method for separate and complete file
-```zsh
+```fish
 wget https://raw.githubusercontent.com/nooob-developer/noob-flutter-installer/main/noob-flutter-full-installer.sh
 ```
 
