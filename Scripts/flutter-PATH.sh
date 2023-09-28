@@ -12,14 +12,14 @@ break
  done
 flutter_PATH_site="
 #&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-# added by noob-flutter-script
-export PATH="$PATH:/$loc_sdk"
+# added by flutterfly
+export PATH="$loc_sdk"
 #&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 "
 	flutter_PATH="
  #======================================================
- # added by noob-flutter-script
-  export PATH="$PATH:/opt/flutter/bin"
+ # added by flutterfly
+  export PATH="/opt/flutter/bin"
 #=======================================================
 "
 PS3="Please select shell to add flutter-PATH: "
