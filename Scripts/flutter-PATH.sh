@@ -6,10 +6,13 @@ select method_flutter in site aur...; do
   
 
  if [[ "$method_flutter" == "site" ]]; then   
-   read -p "please insert location file" loc_sdk
- fi
-break 
+    loc_sdk=$(zenity --file-selection --directory --title="please insert location file")
+fi
+
+
+    break 
  done
+
 flutter_PATH_site="
 #&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 # added by flutterfly
