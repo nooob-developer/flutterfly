@@ -6,8 +6,16 @@ wget "$URL_platform_tools" -o "$save_platform_tool/platform-tools.zip"
 }
 
 Extract_other(){
-   location_file=$(zenity --file-selection --directory --title="Select file for unzip or other")
-    unzip "$location_file" 
+location_file=$(zenity --file-selection --file-filter='*.zip'  --title="Select file for unzip or other")
+
+   if [ -n "$location_file" ]; then
+  # zip file selected
+    echo "Selected: $location_file" 
+     unzip "$location_file" 
+   else
+  # user canceled
+    echo "No file selected"
+fi
 }
 
 PS3="select process for platform-tools
