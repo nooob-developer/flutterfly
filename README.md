@@ -38,7 +38,7 @@ wget https://raw.githubusercontent.com/nooob-developer/noob-flutter-installer/ma
 # Troubleshooting
 please open a GitHub issue 
 or
-**Send your problem to this** id [@nooob_developer](https://t.me/Nooob_developer) for help.
+**Send your problem to this** id [@nooob_developer](https://t.me/Nooob_developer "Telegram") for help.
 
 ## Releases
 
@@ -58,9 +58,10 @@ v3.0
 
  > Added version GUI (soon)
 
-License
+## License
 
 This project is licensed under the GPL 3.0 License - see the [LICENSE file](https://codeberg.org/nooob-developer/flutterfly/src/branch/main/LICENSE) for details.
+
 
 
 

@@ -28,4 +28,4 @@ if [[ "$process" == "Download" ]]; then
     Download
 elif [[ "$process" == "Extract_or_other" ]]; then
     Extract_other
-fi 
+fi
