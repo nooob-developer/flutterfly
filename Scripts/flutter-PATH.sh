@@ -1,17 +1,33 @@
 #!/bin/bash
 
+Choice_input(){
+PS3="Please select shell to add flutter-PATH: "
+ select user_shell in bash zsh; do
+	if [ "$user_shell" == "bash" ]; then
+		user_shell="$HOME/.bashrc"
+	elif [ "$user_shell" == "zsh" ]; then
+		user_shell="$HOME/.zshrc"
+	fi
 PS3="ٰ$(echo -e 'Did you use the download method from the site && repo select it \n \b')"
-
 select method_flutter in site aur...; do
-  
-
- if [[ "$method_flutter" == "site" ]]; then   
-    loc_sdk=$(zenity --file-selection --directory --title="please insert location file")
-fi
-
-
     break 
- done
+done
+}
+
+Main_process(){
+if [[ "$method_flutter" == "site" ]]; then   
+    loc_sdk=$(zenity --file-selection --directory --title="please insert location file")
+    if [ "$user_shell" == "$HOME/.bashrc" ]; then
+            echo "$flutter_PATH_site" >> $user_shell
+	elif [ "$user_shell" == "$HOME/.zshrc" ]; then
+			echo "$flutter_PATH_site" >> $user_shell
+    else
+			echo "Error add flutter-PATH"
+	fi
+fi
+}
+
+Flutter_PATH(){
 
 flutter_PATH_site="
 #&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -19,49 +35,18 @@ flutter_PATH_site="
 export PATH="$loc_sdk"
 #&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 "
-	flutter_PATH="
- #======================================================
- # added by flutterfly
-  export PATH="/opt/flutter/bin"
+
+flutter_PATH_rpo="
+#======================================================
+# added by flutterfly
+export PATH="/opt/flutter/bin"
 #=======================================================
 "
-PS3="Please select shell to add flutter-PATH: "
+}
 
-    if [[ "$method_flutter" == "site" ]]; then
-        echo "add 'export' for site method"
-      	if [ "$user_shell" == "bash" ]; then
-            echo "$flutter_PATH_site" >> $HOME/.bashrc
-		elif [ "$user_shell" == "zsh" ]; then
-			echo "flutter_PATH_site" >> $HOME/.zshrc
-		else
-
-			echo "Error add flutter-PATH"
-
-		fi
-    fi
-    select user_shell in bash zsh; do
-      if [[ "$method_flutter" == "aur..." ]]; then
-      	if [ "$user_shell" == "bash" ]; then
-            echo "$flutter_PATH" >> $HOME/.bashrc
-		elif [ "$user_shell" == "zsh" ]; then
-			echo "flutter_PATH" >> $HOME/.zshrc
-		else
-
-			echo "Error add flutter-PATH"
-
-		fi
-        break 
-fi
-    done
-
-
-	if [ "$user_shell" == "bash" ]; then
-		source $HOME/.bashrc
-	elif [ "$user_shell" == "zsh" ]; then
-		source $HOME/.zshrc
-	fi
+Check_process(){
  echo "cammand flutter doctor"
     flutter doctor
 
 flutter --version
-    
+}

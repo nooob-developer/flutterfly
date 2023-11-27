@@ -40,7 +40,7 @@ export PATH=$loc_sdk
 }
 
 Repo_method(){
-   ##for install with package manager 
+ ## for install with package manager 
 if [ -d "/opt/android-sdk" ]; then
 		echo "Android-sdk installed successfully"
         read -p "do you want add PATH android-sdk this loction(y/n)" Path_default

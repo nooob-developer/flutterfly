@@ -28,7 +28,7 @@ flutter-requirements-linux(){
 install_Chaotic(){
     source ./Chaotic-aur.sh
     chmod +x ./Chaotic-aur.sh
-./Choatic-aur.sh
+sudo ./Chaotic-aur.sh
 }
 
 install_java(){
