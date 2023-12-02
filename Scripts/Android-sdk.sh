@@ -4,7 +4,7 @@ chmod +x ../Prerequisite_scripts/Prerequisite_Android-sdk/*
 
  method_site(){
      PS3="select version android sdk
-     "
+"
       
 
       select version in build-tools platform-tools cmdline-tools android-platforms All-options; do

@@ -45,7 +45,7 @@ if [ -x "$(command -v pacman)" ]; then
   esac
 
      if [ -n "$aur_package" ]; then  
-      $helper -S "$aur_package"
+      pkexec $helper -S "$aur_package"
       output=$($helper -Q | grep flutter)
       if [ -n "$output" ]; then
           echo "INSTALL_SOURCE=aur" > install-source.txt

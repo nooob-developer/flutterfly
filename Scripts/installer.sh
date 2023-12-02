@@ -3,50 +3,43 @@
 function Script(){
 
 install_flutter(){
-    source ./install-flutter.sh
     chmod +x ./install-flutter.sh
-./install-flutter.sh
+    ./install-flutter.sh
 }
 
 flutter_path(){
-    source ./flutter-PATH.sh
     chmod +x ./flutter-PATH.sh
-./flutter-PATH.sh
+    ./flutter-PATH.sh
 }
 
 upgrade_flutter(){
-    source ./update_flutter.sh
     chmod +x ./update_flutter.sh
+    ./update_flutter.sh
 }
 
 flutter-requirements-linux(){ 
-    source ./flutter_linux_prerequisites.sh
     chmod +x ./flutter_linux_prerequisites.sh
-./flutter_linux_prerequisites.sh
+    ./flutter_linux_prerequisites.sh
 }
 
 install_Chaotic(){
-    source ./Chaotic-aur.sh
     chmod +x ./Chaotic-aur.sh
-sudo ./Chaotic-aur.sh
+    ./Chaotic-aur.sh
 }
 
 install_java(){
-    source ./JAVA-PATH.sh
     chmod +x ./JAVA-PATH.sh
-./JAVA-PATH.sh
+    ./JAVA-PATH.sh
 }
 
 PATH_android-sdk(){
-    source ./Android-PATH.sh
     chmod +x ./Android-PATH.sh
-./Android-PATH.sh
+    ./Android-PATH.sh
 }
 
 Android_sdk(){
-    source ./Android-sdk.sh
     chmod +x ./Android-sdk.sh
-./Android-sdk.sh
+    ./Android-sdk.sh
 }
   while true; do
 

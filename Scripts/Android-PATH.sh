@@ -43,7 +43,7 @@ Repo_method(){
  ## for install with package manager 
 if [ -d "/opt/android-sdk" ]; then
 		echo "Android-sdk installed successfully"
-        read -p "do you want add PATH android-sdk this loction(y/n)" Path_default
+        read -p "do you want add PATH android-sdk default loction(y/n)" Path_default
         if [[ "$Path_default" == "y" || "$Path_default" == "Y" ]]; then
             Methods_PATH
             echo "$rpo_method_PATH" >> $HOME/$user_shell 

@@ -23,6 +23,8 @@ export PATH=$JAVA_HOME/bin
 
   PS3="Please select shell to add java-PATH: "
     select user_shell in bash zsh; do
+        break 
+    done
       	if [ "$user_shell" == "bash" ]; then
 			echo "Add JAVA PATH"
 			echo "$JAVA_PATH" >> $HOME/.bashrc
@@ -30,12 +32,4 @@ export PATH=$JAVA_HOME/bin
 			echo "$JAVA_PATH" >> $HOME/.zshrc
 		else
 			echo "Error installing Open-Jdk"
-		fi
-        break 
-
-    done
-
-
-
-
-
+        fi
