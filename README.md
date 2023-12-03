@@ -1,4 +1,7 @@
-# flutterfly <img src="https://github.com/nooob-developer/flutterfly/assets/87908673/ffae2c3b-6418-4e3d-a0bd-5327df1aa769" align="right" />
+<img src="https://github.com/nooob-developer/flutterfly/assets/87908673/ffae2c3b-6418-4e3d-a0bd-5327df1aa769" align="right" />
+
+# flutterfly 
+
 
 # Flutter Installer
 
