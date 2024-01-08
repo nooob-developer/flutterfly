@@ -1,5 +1,12 @@
 #!/bin/bash
+<<<<<<< HEAD
 ## Select user shell
+=======
+<<<<<<< HEAD
+=======
+## Select user shell
+>>>>>>> fbea7d4 (Refactor all files and resolve bugs)
+>>>>>>> e6feabe6c3dddf8bb5f6b5f894b9d5c23be551f7
 Choice_shell(){
 PS3="Please select shell to add Android-PATH: "
     select user_shell in bash zsh; do 
@@ -20,7 +27,15 @@ PS3="Please select method download:
 break 
 done
 
+<<<<<<< HEAD
 ## Define PATH variables
+=======
+<<<<<<< HEAD
+
+=======
+## Define PATH variables
+>>>>>>> fbea7d4 (Refactor all files and resolve bugs)
+>>>>>>> e6feabe6c3dddf8bb5f6b5f894b9d5c23be551f7
 Methods_PATH(){
 rpo_method_PATH="
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -61,6 +76,36 @@ Source_method(){
  echo "$source_method_PATH" >> $HOME/$user_shell 
 }
 
+<<<<<<< HEAD
+Check_PATH(){
+    ## check PATH and reload SHELL
+    Methods_PATH
+if ! grep -Fxq  "$rpo_method_PATH" $HOME/$user_shell ; then
+    echo "$rpo_method_PATH" >> $HOME/$user_shell
+fi
+if ! grep -Fxq  "$source_method_PATH" $HOME/$user_shell ; then
+    echo "$source_method_PATH" >> $HOME/$user_shell
+fi
+
+source $HOME/$user_shell ## reload shell 
+}
+
+=======
+<<<<<<< HEAD
+>>>>>>> e6feabe6c3dddf8bb5f6b5f894b9d5c23be551f7
+if [[ "$method_install" == "repository" ]]; then
+    Choice_shell
+    Repo_method
+    Check_PATH
+elif [[ "$method_install" == "site_source" ]]; then
+   Choice_shell
+   Source_method
+   Check_PATH
+fi
+<<<<<<< HEAD
+=======
+
+=======
 Check_PATH(){
     ## check PATH and reload SHELL
     Methods_PATH
@@ -83,3 +128,5 @@ elif [[ "$method_install" == "site_source" ]]; then
    Source_method
    Check_PATH
 fi
+>>>>>>> fbea7d4 (Refactor all files and resolve bugs)
+>>>>>>> e6feabe6c3dddf8bb5f6b5f894b9d5c23be551f7

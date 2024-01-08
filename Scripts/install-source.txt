@@ -1,0 +1,1 @@
+INSTALL_SOURCE=direct_download
