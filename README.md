@@ -1,8 +1,4 @@
 <a href="https://github.com/nooob-developer/logo/blob/main/flutterfly/flutterfly-git.jpg">
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> fbea7d4 (Refactor all files and resolve bugs)
   <img src="https://github.com/nooob-developer/flutterfly/assets/87908673/ef8e6e65-5c3f-4381-aac8-4320d75d848d" align="right"> 
 </a>
 
@@ -11,19 +7,6 @@
 # Flutter Installer
 
 This script simplifies the installation of Flutter on Mac and Linux systems. 
-<<<<<<< HEAD
-=======
-=======
-  <img src="https://github.com/nooob-developer/flutterfly/assets/87908673/ef8e6e65-5c3f-4381-aac8-4320d75d848d" align="right">
-</a>
-
-# flutterfly
-
-# Flutter Installer
-
-This script simplifies the installation of Flutter on Mac and Linux systems.
->>>>>>> 37701d0 (Refactor all files and resolve bugs)
->>>>>>> fbea7d4 (Refactor all files and resolve bugs)
 This project is completely modular and if you don't want all the files, there is a general file that works without any dependence on other files.
 
 This project enables you to install the Flutter SDK, Android SDK, and dependencies required for building Linux apps, from various sources including language sites, GitHub repositories, official distribution repositories, and unofficial third-party repositories. Except Snap
@@ -34,80 +17,31 @@ Key points:
 - Add PATH Android && Flutter && JDK > in Shell
 - Install dependencies for Linux app generation
 - Supports multiple sources:
-<<<<<<< HEAD
   - Official source 
-=======
-<<<<<<< HEAD
-  - Official source 
-=======
-  - Official source
->>>>>>> 37701d0 (Refactor all files and resolve bugs)
->>>>>>> fbea7d4 (Refactor all files and resolve bugs)
   - GitHub repos
   - Official distro repositories
   - Unofficial 3rd party repos
 
 # Installation
 > To install and use the modular file, `cd` the `Scripts` folder and run the ```installer.sh``` file
-<<<<<<< HEAD
 ```bash
 git clone https://github.com/nooob-developer/flutterfly.git
-=======
-<<<<<<< HEAD
-```bash
-git clone https://github.com/nooob-developer/flutterfly.git
-=======
-<<<<<<< HEAD
-```fish
-git clone https://github.com/nooob-developer/noob-flutter-installer.git
-=======
-```bash
-git clone https://github.com/nooob-developer/flutterfly.git
->>>>>>> 37701d0 (Refactor all files and resolve bugs)
->>>>>>> fbea7d4 (Refactor all files and resolve bugs)
->>>>>>> e6feabe6c3dddf8bb5f6b5f894b9d5c23be551f7
 ```
 or
 
 Download method for separate and complete file
-<<<<<<< HEAD
 ```bash
-=======
-<<<<<<< HEAD
-```bash
-=======
-<<<<<<< HEAD
-```fish
-=======
-```bash
->>>>>>> 37701d0 (Refactor all files and resolve bugs)
->>>>>>> fbea7d4 (Refactor all files and resolve bugs)
->>>>>>> e6feabe6c3dddf8bb5f6b5f894b9d5c23be551f7
 wget https://raw.githubusercontent.com/nooob-developer/noob-flutter-installer/main/noob-flutter-full-installer.sh
 ```
 
 # Important Notes
 **For Iranian users, it is necessary to connect to an IP outside of Iran. (VPN)**
 > Ensure you have at `wget` or `curl` `git` of `polkit` installed before running the script.
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> fbea7d4 (Refactor all files and resolve bugs)
 > - Root access for installing packages 
 >  - Give the script permission to execute.
 
 # Troubleshooting
 please open a GitHub issue 
-<<<<<<< HEAD
-=======
-=======
-> - Root access for installing packages
->  - Give the script permission to execute.
-
-# Troubleshooting
-please open a GitHub issue
->>>>>>> 37701d0 (Refactor all files and resolve bugs)
->>>>>>> fbea7d4 (Refactor all files and resolve bugs)
 or
 **Send your problem to this** id [@nooob_developer](https://t.me/Nooob_developer "Telegram") for help.
 
@@ -132,14 +66,7 @@ v3.0
 ## License
 
 This project is licensed under the GPL 3.0 License - see the [LICENSE file](https://codeberg.org/nooob-developer/flutterfly/src/branch/main/LICENSE) for details.
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> 37701d0 (Refactor all files and resolve bugs)
->>>>>>> fbea7d4 (Refactor all files and resolve bugs)
 
 
 
