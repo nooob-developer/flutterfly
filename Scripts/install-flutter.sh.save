@@ -1,0 +1,92 @@
+#!/bin/bash
+
+
+# Set default installation path
+FLUTTER_INSTALL_PATH="/opt/flutter"
+
+PS3="$(echo -e 'Please select a method to install Flutter')"
+
+select method in aur Chaotic-aur Download-From-site; do
+  break
+done
+
+if [ -x "$(command -v pacman)" ]; then
+  if [[ "$method" == "aur" ]]; then
+    PS3="$(echo -e 'Please select a Flutter release:\n\b')"
+    select releases_flutter in flutter-stable flutter-beta flutter-git flutter-light[Arch-Team]; do
+      break
+    done
+
+    read -p "Which AUR helper do you use? (yay/paru/etc): " helper
+    helper=$(echo "$helper" | sed 's/ *$//')
+
+    case "$releases_flutter" in
+      "flutter-stable")
+        aur_package="flutter"
+        ;;
+      "flutter-beta")
+        aur_package="flutter-beta"
+        ;;
+      "flutter-git")
+        aur_package="flutter-git"
+        ;;
+      "flutter-light[Arch-Team]")
+        aur_package="flutter-light"
+        ;;
+      *)
+        echo "Invalid selection"
+        exit 1
+        ;;
+    esac
+
+    if [ -n "$aur_package" ]; then
+      pkexec $helper -S "$aur_package"
+      output=$($helper -Q | grep flutter)
+      if [ -n "$output" ]; then
+        echo "INSTALL_SOURCE=aur" > install-source.txt
+      fi
+    fi
+  fi
+
+  if [[ "$method" == "Chaotic-aur" ]]; then
+    grep -q 'chaotic' /etc/pacman.conf
+    if [ $? -eq 0 ]; then
+      pkexec pacman -S flutter
+      source_chaotic=$(pacman -Q | grep flutter)
+      if [ -n "$source_chaotic" ]; then
+        echo "INSTALL_SOURCE=Chaotic-AUR" > install-source.txt
+      fi
+      echo "Chaotic mirror found"
+    else
+      echo "Chaotic mirror NOT found"
+      read -p "Do you want to install and configure Chaotic-aur? (y/n): " ans_install_chaotic
+      if [[ "$ans_install_chaotic" == "y" || "$ans_install_chaotic" == "Y" ]]; then
+        source /.Chaotic-aur.sh
+        chmod +x /.Chaotic-aur.sh
+        ./Chaotic-aur.sh
+
+        if [ $? -ne 0 ]; then
+          echo "Failed to install Chaotic-aur"
+          exit 1
+        fi
+      else
+        echo "You can't install from Chaotic-AUR"
+        exit 1
+      fi
+    fi
+  fi
+fi
+
+if [[ "$method" == "Download-From-site" ]]; then
+  echo "Download from Official Site"
+
+  # Set save path to default installation path
+  save_path="$FLUTTER_INSTALL_PATH"
+
+  # Download and extract
+  download_url="https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.16.5-stable.tar.xz"
+  wget "$download_url" -O "$save_path/flutter_linux.tar.xz"
+  tar -xf "$save_path/flutter_linux.tar.xz" -C "$save_path"
+  rm "$save_path/flutter_linux.tar.xz"
+  echo "INSTALL_SOURCE=direct_download" > install-source.txt
+

@@ -27,11 +27,6 @@ install_Chaotic(){
     ./Chaotic-aur.sh
 }
 
-install_java(){
-    chmod +x ./JAVA-PATH.sh
-    ./JAVA-PATH.sh
-}
-
 PATH_android-sdk(){
     chmod +x ./Android-PATH.sh
     ./Android-PATH.sh
@@ -44,7 +39,7 @@ Android_sdk(){
   while true; do
 
 PS3="Please select the function to run: "
-select func in install_flutter flutter_path flutter-requirements-linux upgrade_flutter install_java install_Chaotic PATH_android-sdk Android_sdk; do
+select func in install_flutter flutter_path flutter-requirements-linux upgrade_flutter install_Chaotic PATH_android-sdk Android_sdk; do
   case $func in
   install_flutter)
     install_flutter
@@ -62,10 +57,6 @@ select func in install_flutter flutter_path flutter-requirements-linux upgrade_f
     upgrade_flutter
     ;;
 
-  install_java)  
-    install_java
-    ;;  
-
   PATH_android-sdk)
     PATH_android-sdk
     ;;
@@ -73,7 +64,8 @@ select func in install_flutter flutter_path flutter-requirements-linux upgrade_f
   Android_sdk)
     Android_sdk
     ;;
- install_Chaotic)
+
+  install_Chaotic)
     install_Chaotic
     ;;
 

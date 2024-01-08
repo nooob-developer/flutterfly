@@ -1,107 +1,134 @@
 #!/bin/bash
 
-PS3="$(echo -e 'Please select method install-flutter: \n\b')"
+#set default installation PATH 
+FLUTTER_INSTALL_PATH="/opt/flutter" 
 
-select method in aur Chaotic-aur Download-From-site; do
-   break
-done
+ AUR_method(){
 
+read -p "Which AUR helper do you use? (yay/paru/etc): " helper
+    helper=$(echo "$helper" | sed 's/ *$//')
 
-if [ -x "$(command -v pacman)" ]; then
+    PS3="Please select Flutter release: "
+    select release_flutter in "flutter-stable" "flutter-beta" "flutter-git" "flutter-light[Arch-Team]"; do
+        break 
+    done
 
-   if [[ "$method" == "aur" ]]; then
+    case "$release_flutter" in
+        "flutter-stable")
+            aur_package="flutter"
+            ;;
+        "flutter-beta")
+            aur_package="flutter-beta"
+            ;;
+        "flutter-git")
+            aur_package="flutter-git"
+            ;;
+        "flutter-light[Arch-Team]")
+            aur_package="flutter-light"
+            ;;
+        *)
+            echo "Invalid choice"
+            exit 1
+            ;;
+    esac
+
+    if [ -n "$aur_package" ]; then
+        $helper -S "$aur_package"
+        output=$($helper -Q | grep flutter)
+        if [ -n "$output" ]; then
+            echo "INSTALL_SOURCE=aur" > install-source.txt
+        fi
+    fi
+}
+Chaotic_method(){
     
-    PS3="$(echo -e 'select flutter releases: \n\b')"
 
-     select releases_flutter in flutter-stable flutter-beta flutter-git flutter-light\[Arch-Team\]; do
-        break
-     done
+    grep -q 'chaotic' /etc/pacman.conf
+    if [ $? -eq 0 ]; then
+        pkexec pacman -S flutter 
+        source_chaotic=$(pacman -Q | grep flutter)
+        if [ -n "$source_chaotic" ]; then
+            echo "INSTALL_SOURCE=Chaotic-Aur" > install-source.txt
+        fi
+        echo "Chaotic mirror found"
+    else 
+        echo "No chaotic mirror found"
+        read -p "Do you want to install and configure it? (y/n): " answer_install_chaotic
+        if [[ "$answer_install_chaotic" == "y" ]]; then
+            source ./Chaotic-aur.sh
+            chmod +x ./Chaotic-aur.sh
+            ./Chaotic-aur.sh
+            if [$? -ne 0]; then
+                echo "Installation failed"
+                exit 1
+            fi
+        fi
+    fi
+}
 
-      read -p "Which AUR helper do you use? (yay/paru/etc):" helper
-       helper=$(echo "$helper" | sed 's/ *$//')
+Direct_download_method(){
 
-      case "$releases_flutter" in
-           
-    "flutter-stable")
-       aur_package="flutter"
-        ;;
+major_minor_version="3.16"
+patch_version=5
+update_frequency=10 # days
 
-    "flutter-git")
-       aur_package="flutter-git"
-       ;;
+today=$(date +%s)
+seconds_per_day=86400
+update_seconds=$((update_frequency*seconds_per_day))
 
-    "flutter-light[Arch-Team]")  
-       aur_package="flutter-light"
-       ;;
-       
-    "flutter-beta")
-       aur_package="flutter-beta"
-       ;;
-       
-    *)
-       echo "Invalid selection"
-       ;;
-       
-  esac
+base_url="https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_$major_minor_version"
 
-     if [ -n "$aur_package" ]; then  
-      pkexec $helper -S "$aur_package"
-      output=$($helper -Q | grep flutter)
-      if [ -n "$output" ]; then
-          echo "INSTALL_SOURCE=aur" > install-source.txt
-      fi
-  fi
-   fi
-   if [[ "$method" == "Chaotic-aur" ]]; then
+if [ $((today % update_seconds)) -eq 0 ]; then
+  patch_version=$((patch_version+1))
+fi
 
-   grep -q 'chaotic' /etc/pacman.conf
+download_url="$base_url.$patch_version-stable.tar.xz"
+if [ ! -d "$FLUTTER_INSTALL_PATH" ]; then
+  mkdir -p "$FLUTTER_INSTALL_PATH"
+fi
+
+wget "$download_url" -O "/opt/flutter/flutter_linux.tar.xz"
 if [ $? -eq 0 ]; then
-      pkexec pacman -S flutter
-      source_chaotic=$(pacman -Q | grep flutter)
-      if [ -n "$source_chaotic" ]; then
-          echo "INSTALL_SOURCE=Chaotic-AUR" > install-source.txt
-
-      fi
-      echo "chaotic mirror found"
-  else 
-      echo "chaotic mirror NOT found"
-      read -p "Do you want install and config Chaotic-aur ? " ans_install_chaotic
+    echo "Download successful"
+tar -xf "/opt/flutter/flutter_linux.tar.xz" -C "/opt/flutter"
+rm "/opt/flutter/flutter_linux.tar.xz"
+else
+    >&2 echo "Download failed"
+    read -p "Do you want to try again? (y/n): " answer_download
+    if [[ "$answer_download" == "y" ]]; then
+        echo "Retrying download..."
+        wget -c -P "$download_url" -O "/opt/flutter/flutter_linux.tar.xz"
+        tar -xf "/opt/flutter/flutter_linux.tar.xz" -C "/opt/flutter"
+        rm "/opt/flutter/flutter_linux.tar.xz"
+    fi
 fi
-      if [[ "$ans_install_chaotic" == "y" || "$ans_install_chaotic" == "Y" ]]; then
-      
-         source ~./Chaotic-aur.sh
-         chmod +x ~./Chaotic-aur.sh
-         ./Chaotic-aur.sh
-         
-         if [ $? -ne 0 ]; then 
-            echo "test"
-         fi
-         
-      else
-         echo "You can't install from Chaotic-AUR"
-      fi
-   fi
+
+if [ -d "$FLUTTER_INSTALL_PATH" ]; then
+echo "INSTALL_SOURCE=direct_download" > install-source.txt
 fi
-   if [[ "$method" == "Download-From-site" ]]; then
-    echo "Download from Official Site"
 
-       # Get save path from user
-     save_path=$(zenity --file-selection --directory --title="Select Download Path")
+}
 
- # Download and extract
-        download_url="https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.13.3-stable.tar.xz"
-      wget "$download_url" -O "$save_path/flutter.tar.xz"
-      tar -xf "$save_path/flutter.tar.xz" -C "$save_path"
-      if [ $? -ne 0 ]; then 
-     echo "INSTALL_SOURCE=direct_download" > install-source.txt
-      fi
-      read -p "do you want update flutter to latest version? (y/n)" upgrade-flutter
-     if [[ "$upgrade-flutter" == "y" || "$upgrade-flutter" == "Y" ]]; then
-source ~./update_flutter.sh
-./update_flutter.sh
-    
-     else
-         exit 1 
-   fi
-   fi
+Do_arch_steps(){
 
+PS3="$(echo -e 'Select installation method: ')"
+select method in aur Chaotic-aur direct_download; do
+    break 
+done
+if [[ "$method" == "aur" ]]; then
+AUR_method
+fi
+
+if [[ "$method" == "Chaotic-aur" ]]; then
+Chaotic_method
+fi
+
+if [[ "$method" == "direct_download" ]]; then
+Direct_download_method
+fi 
+}
+if [ -x "$(command -v pacman)" ]; then
+Do_arch_steps
+else 
+    Direct_download_method
+fi

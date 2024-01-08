@@ -1,4 +1,5 @@
 #!/bin/bash
+## Select user shell
 Choice_shell(){
 PS3="Please select shell to add Android-PATH: "
     select user_shell in bash zsh; do 
@@ -19,7 +20,7 @@ PS3="Please select method download:
 break 
 done
 
-
+## Define PATH variables
 Methods_PATH(){
 rpo_method_PATH="
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -60,12 +61,25 @@ Source_method(){
  echo "$source_method_PATH" >> $HOME/$user_shell 
 }
 
+Check_PATH(){
+    ## check PATH and reload SHELL
+    Methods_PATH
+if ! grep -Fxq  "$rpo_method_PATH" $HOME/$user_shell ; then
+    echo "$rpo_method_PATH" >> $HOME/$user_shell
+fi
+if ! grep -Fxq  "$source_method_PATH" $HOME/$user_shell ; then
+    echo "$source_method_PATH" >> $HOME/$user_shell
+fi
+
+source $HOME/$user_shell ## reload shell 
+}
+
 if [[ "$method_install" == "repository" ]]; then
     Choice_shell
     Repo_method
-
+    Check_PATH
 elif [[ "$method_install" == "site_source" ]]; then
    Choice_shell
    Source_method
+   Check_PATH
 fi
-
