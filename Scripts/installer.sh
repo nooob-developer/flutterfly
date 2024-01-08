@@ -27,11 +27,14 @@ install_Chaotic(){
     ./Chaotic-aur.sh
 }
 
+<<<<<<< HEAD
 install_java(){
     chmod +x ./JAVA-PATH.sh
     ./JAVA-PATH.sh
 }
 
+=======
+>>>>>>> fbea7d4 (Refactor all files and resolve bugs)
 PATH_android-sdk(){
     chmod +x ./Android-PATH.sh
     ./Android-PATH.sh
@@ -44,7 +47,11 @@ Android_sdk(){
   while true; do
 
 PS3="Please select the function to run: "
+<<<<<<< HEAD
 select func in install_flutter flutter_path flutter-requirements-linux upgrade_flutter install_java install_Chaotic PATH_android-sdk Android_sdk; do
+=======
+select func in install_flutter flutter_path flutter-requirements-linux upgrade_flutter install_Chaotic PATH_android-sdk Android_sdk; do
+>>>>>>> fbea7d4 (Refactor all files and resolve bugs)
   case $func in
   install_flutter)
     install_flutter
@@ -62,10 +69,13 @@ select func in install_flutter flutter_path flutter-requirements-linux upgrade_f
     upgrade_flutter
     ;;
 
+<<<<<<< HEAD
   install_java)  
     install_java
     ;;  
 
+=======
+>>>>>>> fbea7d4 (Refactor all files and resolve bugs)
   PATH_android-sdk)
     PATH_android-sdk
     ;;
@@ -73,7 +83,12 @@ select func in install_flutter flutter_path flutter-requirements-linux upgrade_f
   Android_sdk)
     Android_sdk
     ;;
+<<<<<<< HEAD
  install_Chaotic)
+=======
+
+  install_Chaotic)
+>>>>>>> fbea7d4 (Refactor all files and resolve bugs)
     install_Chaotic
     ;;
 
