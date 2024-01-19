@@ -60,7 +60,7 @@ flutter_PATH_rpo="
 #======================================================
 # added by flutterfly
 export FLUTTER_HOME=/opt/flutter
-export PATH=${PATH}:${FLUTTER_HOME}/bin
+export PATH=/opt/flutter/bin
 #=======================================================
 "
 fi
