@@ -51,7 +51,8 @@ if [[ "$method_flutter" == "site" ]]; then
 flutter_PATH_site="
 #&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 # added by flutterfly
-export PATH"$loc_sdk=$(zenity --file-selection --title="Please select SDK location")"
+export PATH="$loc_sdk=$(zenity --file-selection --title="Please select SDK location")"
+export PATH_bin="$PATH:$loc_sdk/flutter/bin"
 #&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 "
 
