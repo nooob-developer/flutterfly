@@ -1,4 +1,35 @@
 #!/bin/bash
+function MacScript(){
+if [ "$(uname)" == "Darwin" ]; then
+ macOS(){
+    if [ "$(uname)" == "Darwin" ]; then
+     chmod +x ./MacOS/installer_flutter_mac.sh
+     ./MacOS/installer_flutter_mac.sh
+    fi
+}
+
+PS3="Please select the function to run: "
+select func in macOS; do
+  case $func in
+  macOS)
+    macOS
+    ;;
+  *)
+    echo "Invalid choice"
+    ;;
+  esac
+  break
+done
+
+read -p "Continue with the script? (y/n): " answer
+if [[ "$answer" != "y" || "$answer" != "Y" || "$answer" != "yes" ]]; then
+    break 
+fi
+done
+fi
+}
+MacScript
+
 
 function Script(){
 
