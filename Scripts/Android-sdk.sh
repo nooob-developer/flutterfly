@@ -1,12 +1,15 @@
 #!/bin/bash
 ## get executable for Scripts
+BoldCyan='\033[1;36m' ## bold cyan 
+NC='\033[0m' # No Color
+
+echo -e "${BoldCyan}only support manual method (Download site)${NC}"
+
 chmod +x ../Prerequisite_scripts/Prerequisite_Android-sdk/*
 
  method_site(){
      PS3="select version android sdk
 "
-      
-
       select version in build-tools platform-tools cmdline-tools android-platforms All-options; do
         
           case "$version" in 
@@ -40,11 +43,8 @@ chmod +x ../Prerequisite_scripts/Prerequisite_Android-sdk/*
                 ;;
         esac
  break 
-              done
-
-        
+              done  
 
 }
 
 method_site
-
