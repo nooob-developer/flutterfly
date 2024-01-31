@@ -58,7 +58,7 @@ Chaotic_method(){
             source ./Chaotic-aur.sh
             chmod +x ./Chaotic-aur.sh
             ./Chaotic-aur.sh
-            if [$? -ne 0]; then
+            if [ $? -ne 0 ]; then
                 echo "Installation failed"
                 exit 1
             fi
