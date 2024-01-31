@@ -25,7 +25,7 @@ read -p "Continue with the script? (y/n): " answer
 if [[ "$answer" != "y" || "$answer" != "Y" || "$answer" != "yes" ]]; then
     break 
 fi
-done
+
 fi
 }
 MacScript
