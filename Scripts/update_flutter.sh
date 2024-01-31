@@ -22,11 +22,11 @@ flutter_upgrade(){
 
     if [[ "$method" == "$upgrade_method_repo" ]]; then
 
-      if [ "$source" == "aur" ]; then
+      if [ "$source" == "INSTALL_SOURCE=aur" ]; then
 
         paru -S flutter
 
-      elif [ "$source" == "Chaotic-Aur" ]; then
+      elif [ "$source" == "INSTALL_SOURCE=Chaotic-Aur" ]; then
 
         sudo pacman -S flutter
 
@@ -41,17 +41,19 @@ flutter_upgrade(){
 
     if [ -d "$FLUTTER_INSTALL_PATH" ]; then
 
-      flutter upgrade
+     sudo flutter upgrade
 
     else
 
-      echo "Flutter is not installed" >&2
+      echo "Flutter is not installed manual method" >&2
+      read -p "do you want update with flutter command ? (y/n)" answer
+      if [[ "$answer" == "y" || "$answer" == "Y" || "$answer" == "yes" ]]; then
+        sudo flutter upgrade
+      fi
+
       exit 1
-
     fi
-
   fi
-
 }
 
 # Call upgrade function
