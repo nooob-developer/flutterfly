@@ -9,10 +9,10 @@ select file in "MacOS_config" "flutter_mac"; do
     break
 done
 if [[ "$file" == "MacOS_config" ]]; then
-    chmod +x MacOS_config.sh
-    ./MacOS_config.sh
+    chmod +x MacOS/MacOS_config.sh
+    .MacOS/MacOS_config.sh
 elif [[ "$file" == "flutter_mac" ]]; then
-    chmod +x flutter_mac.sh
-    ./flutter_mac.sh
+    chmod +x MacOS/flutter_mac.sh
+    ./MacOS/flutter_mac.sh
 fi
 fi
