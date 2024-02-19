@@ -3,7 +3,7 @@ function MacScript(){
 if [ "$(uname)" == "Darwin" ]; then
  macOS(){
     if [ "$(uname)" == "Darwin" ]; then
-     chmod +x ./MacOS/installer_flutter_mac.sh
+     chmod +x MacOS/installer_flutter_mac.sh
      ./MacOS/installer_flutter_mac.sh
     fi
 }
