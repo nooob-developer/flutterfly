@@ -22,7 +22,7 @@ done
                 echo "install the required tools youself again :)"
                 ;;
         esac
-     done
+
         echo "install basic tools"  
         brew install git wget
     }
