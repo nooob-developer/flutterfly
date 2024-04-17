@@ -19,10 +19,18 @@ function help() {
 # Function to upgrade Flutter channel
 function change_channel() {
     PS3="Select Flutter channel to upgrade: "
-    select channel in "beta" "back"; do
+    select channel in "beta" "stable" "master" "back"; do
         case "$channel" in
             "beta")
                 flutter channel beta
+                flutter upgrade
+                ;;
+            "stable")
+                flutter channel stable
+                flutter upgrade
+                ;;
+            "master")
+                flutter channel master
                 flutter upgrade
                 ;;
             "back")
