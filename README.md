@@ -1,8 +1,6 @@
-<p align="right">
-  <a href="https://github.com/nooob-developer/logo/blob/main/flutterfly/flutterfly-git.jpg">
-    <img src="https://github.com/nooob-developer/flutterfly/assets/87908673/ef8e6e65-5c3f-4381-aac8-4320d75d848d">
-  </a>
-</p>
+
+   <img src="https://github.com/nooob-developer/logo/blob/main/flutterfly/flutterfly-git.jpg" align="right"
+   width="220" height="178">
 
 # flutterfly
 
