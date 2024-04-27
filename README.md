@@ -1,11 +1,9 @@
-
-   <img src="https://github.com/nooob-developer/logo/blob/main/flutterfly/flutterfly-git.jpg" align="right"
-   width="220" height="178">
-
 # flutterfly
 
 # Flutter Installer
-
+   <img src="https://github.com/nooob-developer/logo/blob/main/flutterfly/flutterfly-git.jpg" align="right"
+   width="220" height="178">
+   
 This script simplifies the installation of Flutter on Mac and Linux systems.
 This project is completely modular and if you don't want all the files, there is a general file that works without any dependence on other files.
 
