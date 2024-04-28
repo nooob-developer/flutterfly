@@ -12,7 +12,8 @@ This project enables you to install the Flutter SDK, Android SDK, and dependenci
 Key points:
 - Install Flutter SDK
 - Install Android SDK
-- Add PATH Android && Flutter && JDK > in Shell
+- Install requirements for build Linux && MacOS && IOS && Android platform
+- Add PATH Android && Flutter > in Shell
 - Install dependencies for Linux app generation
 - Supports multiple sources:
   - Official source
@@ -25,13 +26,6 @@ Key points:
 ```bash
 git clone https://github.com/nooob-developer/flutterfly.git
 ```
-or
-
-Download method for separate and complete file
-```bash
-wget https://raw.githubusercontent.com/nooob-developer/noob-flutter-installer/main/noob-flutter-full-installer.sh
-```
-
 # Important Notes
 **For Iranian users, it is necessary to connect to an IP outside of Iran. (VPN)**
 > Ensure you have at `wget` or `curl` `git` of `polkit` installed before running the script.
